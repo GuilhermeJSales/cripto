@@ -1,7 +1,7 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import styles from './home.module.css';
 import { BiSearch } from 'react-icons/bi';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 // https://coinlib.io/api/v1/coinlist?key=3ce7d1db5d873de6
 
@@ -22,6 +22,8 @@ interface DataProps {
 
 export function Home() {
   const [coins, setCoins] = useState<CoinProps[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     function getData() {
@@ -51,10 +53,21 @@ export function Home() {
     getData();
   }, []);
 
+  function handleSearch(e: FormEvent) {
+    e.preventDefault();
+    if (inputValue === '') return;
+    navigate(`/detail/${inputValue}`);
+  }
+
   return (
     <main className={styles.container}>
-      <form className={styles.form}>
-        <input type="text" placeholder="Digite o símbolo da moeda: BTC..." />
+      <form className={styles.form} onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Digite o símbolo da moeda: BTC..."
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
         <button type="submit">
           <BiSearch size={30} color="#fff" />
         </button>
@@ -70,22 +83,29 @@ export function Home() {
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr className={styles.tr}>
-            <td data-label="Moeda" className={styles.tdLabel}>
-              <Link to="detail/btc" className={styles.link}>
-                <span>Bitcoin </span> | BTC
-              </Link>
-            </td>
-            <td data-label="Mercado" className={styles.tdLabel}>
-              R$ 19293
-            </td>
-            <td data-label="Preço" className={styles.tdLabel}>
-              R$ 40.962
-            </td>
-            <td data-label="Volume" className={styles.tdProfit}>
-              <span>-5.3</span>
-            </td>
-          </tr>
+          {coins.map((coin) => (
+            <tr className={styles.tr} key={coin.name}>
+              <td data-label="Moeda" className={styles.tdLabel}>
+                <Link to={`/detail/${coin.symbol}`} className={styles.link}>
+                  <span>{coin.name} </span> | {coin.symbol}
+                </Link>
+              </td>
+              <td data-label="Mercado" className={styles.tdLabel}>
+                {coin.formatedMarket}
+              </td>
+              <td data-label="Preço" className={styles.tdLabel}>
+                {coin.formatedPrice}
+              </td>
+              <td
+                data-label="Volume"
+                className={
+                  Number(coin?.delta_24h) >= 0 ? styles.tdProfit : styles.tdLoss
+                }
+              >
+                <span>{coin.delta_24h}</span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </main>
