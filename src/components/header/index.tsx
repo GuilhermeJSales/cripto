@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 import styles from './header.module.css';
 import logo from '../../assets/logo.svg';
-import { Home } from '../../pages/home';
 
 export function Header() {
   return (
