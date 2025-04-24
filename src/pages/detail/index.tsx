@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './detail.module.css';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 
 interface CoinProps {
   symbol: string;
@@ -16,12 +16,14 @@ interface CoinProps {
   formatedLowPrice: string;
   formatedHightPrice: string;
   error?: string;
+  numberDelta: number;
 }
 
 export function Detail() {
   const { cripto } = useParams();
   const [detail, setDetail] = useState<CoinProps>();
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function getData() {
@@ -41,9 +43,13 @@ export function Detail() {
             formatedMarket: price.format(Number(data.market_cap)),
             formatedLowPrice: price.format(Number(data.low_24h)),
             formatedHightPrice: price.format(Number(data.high_24h)),
+            numberDelta: parseFloat(data.delta_24h.replace(',', '.')),
           };
           setDetail(resultData);
           setLoading(false);
+        })
+        .catch(() => {
+          navigate('/');
         });
     }
     getData();
@@ -75,7 +81,9 @@ export function Detail() {
           <strong>Delta 24h:</strong>
           <span
             className={
-              Number(detail?.delta_24h) >= 0 ? styles.profit : styles.loss
+              detail?.numberDelta && detail.numberDelta >= 0
+                ? styles.profit
+                : styles.loss
             }
           >
             {detail?.delta_24h}
