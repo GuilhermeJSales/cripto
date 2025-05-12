@@ -44,18 +44,6 @@ npm run dev
 
 ---
 
-## 📁 Estrutura do projeto
-
-```bash
-src/
-├── components/     # Componentes reutilizáveis
-├── styles/         # Estilos com CSS Modules
-├── types/          # Tipagens do TypeScript
-├── services/       # Funções de chamada à API
-└── App.tsx         # Componente principal
-```
-
----
 
 ## 🧠 Aprendizados
 
