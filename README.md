@@ -1,54 +1,76 @@
-# React + TypeScript + Vite
+# 💰 Dev Currency
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto front-end desenvolvido com **React**, **TypeScript**, **Vite** e **CSS Modules**, que consome dados de criptomoedas em tempo real através de uma API pública utilizando `fetch`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Deploy
 
-## Expanding the ESLint configuration
+Acesse o projeto online:  
+👉 [Deploy](https://cripto-five.vercel.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🧰 Tecnologias Utilizadas
+
+- React
+- TypeScript
+- Vite
+- CSS Modules
+- React Router
+- Fetch API
+
+---
+
+## 🔎 Funcionalidades
+
+- Consulta de dados atualizados de diversas criptomoedas;
+- Interface rápida e responsiva;
+- Exibição de nome, símbolo, valor em dólar e outras informações das moedas;
+- Consumo da API com `fetch`.
+
+---
+
+## 📦 Instalação
+
+Clone o repositório, instale as dependências e execute o projeto:
+
+```bash
+git clone https://github.com/seu-usuario/dev-currency.git
+cd dev-currency
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📁 Estrutura do projeto
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+src/
+├── components/     # Componentes reutilizáveis
+├── styles/         # Estilos com CSS Modules
+├── types/          # Tipagens do TypeScript
+├── services/       # Funções de chamada à API
+└── App.tsx         # Componente principal
 ```
+
+---
+
+## 🧠 Aprendizados
+
+- Prática com requisições usando fetch;
+- Tipagem de dados com TypeScript;
+- Organização de projeto front-end com Vite;
+- Estilização modular com CSS Modules;
+- Boas práticas de componentização e estrutura de pastas;
+- Implementação de navegação com React Router.
+
+
+---
+
+🙋‍♂️ Autor
+- Projeto desenvolvido no curso [Full Stack Pro](https://sujeitoprogramador.com/fullstackpro/?ref=R87195062M)
+- Feito com 💙 por Guilherme J Sales
+
+
